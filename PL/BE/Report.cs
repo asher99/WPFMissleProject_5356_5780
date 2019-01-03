@@ -11,6 +11,6 @@ namespace BE
         DateTime timeOfReport { get; set; }
         string name { get; set; }
         string address { get; set; } // Location
-        int numOfBombs { get; set; }
+        int numOfBombs { get; set; }//kk
     }
 }
