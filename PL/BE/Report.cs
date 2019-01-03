@@ -12,5 +12,6 @@ namespace BE
         string name { get; set; }
         string address { get; set; } // Location
         int numOfBombs { get; set; }
+        //אשררררררר
     }
 }
