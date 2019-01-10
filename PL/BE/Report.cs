@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Device.Location;
 
 namespace BE
 {
     public class Report
     {
-        DateTime timeOfReport { get; set; }
-        string name { get; set; }
-        string address { get; set; } // Location
-        int numOfBombs { get; set; }
-        //אשררררררר
+        public DateTime timeOfReport { get; set; }
+        public string name { get; set; }
+        public GeoCoordinate address { get; set; } // Location
+        public int numOfBombs { get; set; }
+        public int EventID { get; set; }
     }
 }
