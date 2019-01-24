@@ -11,14 +11,16 @@ namespace BLL
     class BLL_imp : I_Bll
     {
         /// <summary>
-        /// 
+        ///  the algorithm gets a list of reports and a number K. 
+        ///  the algorithm finds K clusters and assigns for each report a cluster.
+        ///  each cluster contains the nearest reports.
         /// </summary>
         /// <param name="report_List"></param>
         /// <param name="k"></param>
         /// <returns></returns>
         public List<GeoCoordinate> k_Means(List<Report> report_List, int k)
         {
-            //Initates list of central points       
+            // Initiates list of central points       
             List<GeoCoordinate> ci_List = new List<GeoCoordinate>();
             double latitude_Min;
             double latitude_Max;
@@ -29,7 +31,7 @@ namespace BLL
             {
                 return null;
             }
-            //We will generate k central point by findingrandom points in the surronded area
+            // We will generate k central point by finding random points in the surrounded area
             latitude_Min = report_List.Min(r => r.address.Latitude);
             latitude_Max = report_List.Max(r => r.address.Latitude);
             longitude_Min = report_List.Min(r => r.address.Longitude);
@@ -48,7 +50,7 @@ namespace BLL
             do
             {
                 is_Changed = false;
-                //For each report we will find its closest center point
+                // For each report we will find its closest center point
                 for (int i = 0; i < report_List.Count; i++)
                 {
                     double min = report_List[i].address.GetDistanceTo(ci_List[0]);
@@ -67,7 +69,7 @@ namespace BLL
 
                 }
 
-                //finds new center points of each cluster
+                // finds new center points of each cluster
                 report_List.OrderBy(c => c.clusterId);
                 int id = 0;
                 double c_LongitudeSum = 0;
