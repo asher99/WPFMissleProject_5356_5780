@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Syncfusion.Licensing;
 
 namespace PL
 {
@@ -13,5 +14,10 @@ namespace PL
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            //Register Syncfusion license
+            SyncfusionLicenseProvider.RegisterLicense("NjE1ODNAMzEzNjJlMzQyZTMwVGcxS2NaeFlpRWVqMzkwMGJXWkZwYzJsV2JNUjJ1UXdJbUJuWHlWcFdtZz0==");
+        }
     }
 }
