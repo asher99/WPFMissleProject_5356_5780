@@ -1,22 +1,30 @@
 ﻿using PL.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BE;
+using PL.ViewModel;
 
 namespace PL.Commands
 {
     public class AddReportCommand : ICommand
     {
+        private IReportViewModel CurrentVM;
+
+        public AddReportCommand(ReportViewModel CurrentVM)
+        {
+            this.CurrentVM = CurrentVM;
+        }
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
-
-        private IReportViewModel CurrentVM;
 
         public bool CanExecute(object parameter)
         {
@@ -34,7 +42,13 @@ namespace PL.Commands
 
         public void Execute(object parameter)
         {
-
+            var values = (object[])parameter;
+            Report report = new Report();
+            report.name = (string)values[0];
+            report.timeOfReport = (DateTime)values[1];
+            report.address = (GeoCoordinate)values[2];///convert the location to geo coordinate
+            report.numOfBombs = (int)values[3];
+            CurrentVM.currentModel.addReport(report);
         }
     }
 }
