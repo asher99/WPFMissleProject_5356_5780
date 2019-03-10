@@ -23,6 +23,7 @@ namespace PL.ViewModel
     /// application and provides an entry point for the bindings.
     /// </summary>
     public class ViewModelLocator
+
     {
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
