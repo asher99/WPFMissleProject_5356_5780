@@ -7,8 +7,9 @@
         xmlns:local="clr-namespace:PL.Views"
         mc:Ignorable="d"
         Title="mapWindow" Height="300" Width="300">
-    
-    <Grid>
-        <m:Map x:Name="myMap" CredentialsProvider="g6V40OMcf2NNJe07qiWD~NhB3DL-oqtYSkUHB5kellQ~Avi_2hYLQtKCC8iFOuBjMx1EQfprwDIzkz782VgpYms7401vYZDrNepSNkxyW_nJ " Mode="Aerial" Center="31.7962419,35.3154441" ZoomLevel="7.5"/>
+
+    <Grid>        
+        <m:Map x:Name="myMap" CredentialsProvider="g6V40OMcf2NNJe07qiWD~NhB3DL-oqtYSkUHB5kellQ~Avi_2hYLQtKCC8iFOuBjMx1EQfprwDIzkz782VgpYms7401vYZDrNepSNkxyW_nJ " 
+               Mode="Aerial" Center="31.7962419,35.3154441" ZoomLevel="7.5" Grid.RowSpan="2"/>
     </Grid>
 </Window>

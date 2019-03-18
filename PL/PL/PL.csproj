@@ -86,7 +86,7 @@
     <Compile Include="Views\New_Report.xaml.cs">
       <DependentUpon>New_Report.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -96,7 +96,7 @@
     </Compile>
     <Compile Include="Commands\AddHitCommand.cs" />
     <Compile Include="Commands\AddReportCommand.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
