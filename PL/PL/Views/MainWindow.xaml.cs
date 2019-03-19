@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PL.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,16 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Report_Click(object sender, RoutedEventArgs e)
+        {
+            New_Report report = new New_Report();
+            report.Show();
         }
     }
 }

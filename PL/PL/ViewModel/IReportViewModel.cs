@@ -14,6 +14,5 @@ namespace PL.ViewModel
         event PropertyChangedEventHandler PropertyChanged;
         MissleModel currentModel { set; get; }
         Report incomingReport { set; get; }
-
     }
 }
