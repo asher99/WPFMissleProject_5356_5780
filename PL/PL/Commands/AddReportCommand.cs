@@ -45,7 +45,7 @@ namespace PL.Commands
             Report report = new Report();
             report.name = (string)values[0];
             report.timeOfReport = (DateTime)values[1];
-            report.address = (GeoCoordinate)values[2];///convert the location to geo coordinate
+            report.address = (GeoCoordinate)values[2];
             report.numOfBombs = (int)values[3];
             CurrentVM.incomingReport = report;
         }

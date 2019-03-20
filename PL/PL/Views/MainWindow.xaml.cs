@@ -26,7 +26,7 @@ namespace PL
         {
             InitializeComponent();
         }
-
+        
         private void Report_Click(object sender, RoutedEventArgs e)
         {
             New_Report report = new New_Report();
