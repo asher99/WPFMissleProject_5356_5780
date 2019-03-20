@@ -4,10 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" WindowState="Maximized">
-    <Grid>        
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid> 
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="138*"/>
             <ColumnDefinition Width="379*"/>
@@ -20,6 +30,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
+           
             <Button Content="Report" Click="Report_Click" Grid.Row="1"/>
             <Button Content="Verified hits" Grid.Row="2"/>
             <Button Content="Data Analysis" Grid.Row="3"/>
