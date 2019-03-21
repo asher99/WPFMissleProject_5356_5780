@@ -27,7 +27,7 @@ namespace PL.ViewModel
         //convert the location to GeoCoordinate
         public static GeoCoordinate Geocode(string address)
         {
-            string URL = "http://dev.virtualearth.net/REST/v1/Location?query=" + address +
+            string URL = "http://dev.virtualearth.net/REST/v1/Locations?query=" + address +
                 "g6V40OMcf2NNJe07qiWD~NhB3DL - oqtYSkUHB5kellQ~Avi_2hYLQtKCC8iFOuBjMx1EQfprwDIzkz782VgpYms7401vYZDrNepSNkxyW_nJ ";
             using (var client = new WebClient())
             {
