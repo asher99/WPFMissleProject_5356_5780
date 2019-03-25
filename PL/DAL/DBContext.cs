@@ -9,15 +9,15 @@ using BE;
 
 namespace DAL
 {
-    public class EventContext : DbContext
+    public class DBContext : DbContext
     {
-        public EventContext() : base("Event_DB")
+        public DBContext() : base("Event_DB")
         {
 
         }
 
         public DbSet<Report> Reports { get; set; }
-        public DbSet<Event> Events { get; set; }
+        //public DbSet<Event> Events { get; set; }
         public DbSet<Hit> Hits { get; set; }
 
     }

@@ -5,11 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Device.Location;
 using BE;
+using DAL;
 
 namespace BLL
 {
-    class BLL_imp : I_Bll
+    public class BLL_imp : I_Bll
     {
+        Dal_imp currentDal;
+
+        public BLL_imp()
+        {
+            currentDal = new Dal_imp();
+        }
         /// <summary>
         ///  the algorithm gets a list of reports and a number K. 
         ///  the algorithm finds K clusters and assigns for each report a cluster.
@@ -99,5 +106,16 @@ namespace BLL
 
             return ci_List;
         }
+
+        public void addReport(Report report)
+        {
+            currentDal.addReport(report);
+        }
+
+        public void addHit(Hit hit)
+        {
+            currentDal.addHit(hit);
+        }
     }
+    
 }

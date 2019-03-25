@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dal_imp.cs" />
-    <Compile Include="EventContext.cs" />
+    <Compile Include="DBContext.cs" />
     <Compile Include="IDAL.cs" />
     <Compile Include="Model1.Designer.cs">
       <AutoGen>True</AutoGen>

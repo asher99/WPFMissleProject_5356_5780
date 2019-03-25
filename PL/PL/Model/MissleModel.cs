@@ -4,24 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
+using BLL;
 
 namespace PL.Model
 {
     public class MissleModel
     {
-        public MissleModel() { }
-        public Report incomingReport { get; set; }
-        public Hit incomingHit { get; set; }
-
-        public void AddHit(Hit hit)
+        BLL_imp currentBll;
+        public MissleModel()
         {
-            ///add hit to the bll
+            currentBll = new BLL_imp();
+        }
+        public Report incomingReport
+        {
+            get { return incomingReport; }
+            set
+            {
+                incomingReport = value;
+                currentBll.addReport(value);
+            }
         }
 
-        public void AddReport(Report report)
+        public Hit incomingHit
         {
-            ///add report to the bll
+            get { return incomingHit; }
+            set
+            {
+                incomingHit = value;
+                currentBll.addHit(value);
+
+            }
         }
+
+        
+
+        
 
     }
 }

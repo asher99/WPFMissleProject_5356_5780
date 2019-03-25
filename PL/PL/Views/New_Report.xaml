@@ -28,6 +28,10 @@
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
+        <Label Content="name:" HorizontalAlignment="Left" Margin="51,57,0,0" VerticalAlignment="Top"/>
+        <Label Content="Time:" HorizontalAlignment="Left" Margin="51,97,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.414,0.263"/>
+        <Label Content="Location:" HorizontalAlignment="Left" Margin="43,177,0,0" VerticalAlignment="Top"/>
+        <Label Content="NumOfFalls:" HorizontalAlignment="Left" Margin="36,137,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

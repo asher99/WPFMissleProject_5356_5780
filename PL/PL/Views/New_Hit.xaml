@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:PL.Views"
         xmlns:local1="clr-namespace:PL.ViewModel"
         mc:Ignorable="d"
-        Title="New_Hit" Height="300" Width="300">
+        Title="New_Hit" Height="350" Width="300">
     <Window.Resources>
-        <local1:ReportConverter x:Key="reportConverter"></local1:ReportConverter>
+        <local1:HitConverter x:Key="hitConverter"></local1:HitConverter>
     </Window.Resources>
     <Grid>
         <Label FontSize="20" Content="please fill the next fields" HorizontalAlignment="Center" Margin="0,10" VerticalAlignment="Top"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="95,124,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox x:Name="location" HorizontalAlignment="Left" Height="23" Margin="85,85,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="time" HorizontalAlignment="Left" Height="23" Margin="85,52,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="147,137,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="location" HorizontalAlignment="Left" Height="23" Margin="137,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="time" HorizontalAlignment="Left" Height="23" Margin="137,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <Button Command="{Binding AddHitCommand}" Content="submit" HorizontalAlignment="Left" Margin="107,239,0,0" Click="Submit_Click" VerticalAlignment="Top" Width="75">
+        <Button Command="{Binding AddHitCommand}" Content="submit" HorizontalAlignment="Left" Margin="100,254,0,0" Click="Submit_Click" VerticalAlignment="Top" Width="75">
             <Button.CommandParameter>
-                <MultiBinding Converter="{StaticResource reportConverter}">
+                <MultiBinding Converter="{StaticResource hitConverter}">
                     <Binding Path="Image" ElementName="image"/>
                     <Binding Path="Text" ElementName="time"/>
                     <Binding Path="Text" ElementName="location"/>
