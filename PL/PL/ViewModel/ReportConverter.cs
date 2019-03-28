@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Geocoding.Microsoft;
+using GoogleMapsApi;
 using System.Windows.Data;
 using Geocoding.MapQuest;
 using Geocoding.Microsoft.Json;
@@ -19,13 +20,13 @@ namespace PL.ViewModel
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            GeoCoordinate address = Geocode((string)values[2]);
-            values[2] = address;
+            //GeoCoordinate address = Geocode((string)values[2]);
+            //values[2] = address;
             return values.Clone();
         }
 
         //convert the location to GeoCoordinate
-        public static GeoCoordinate Geocode(string address)
+        /*public static GeoCoordinate Geocode(string address)
         {
             string URL = "http://dev.virtualearth.net/REST/v1/Locations?query=" + address +
                 "9hreNQYnSPDQ6X066DTw~jFDegO5By5sqy3CKPpTcTw~AlFCtgUsfTXSCVCs0EQQeQ4yxuGGLkzfOi0JEfmfQXqh2eHXCNEYGcAW_WLBmEM1 ";
@@ -45,7 +46,7 @@ namespace PL.ViewModel
                 }
             }
 
-        }
+        }*/
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
