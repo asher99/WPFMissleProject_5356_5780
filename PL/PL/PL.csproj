@@ -192,13 +192,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\HitConverter.cs" />
-    <Compile Include="Converters\StringToGeoCoordinate.cs" />
+    <Compile Include="UserControles\AutoCompleteUC.xaml.cs">
+      <DependentUpon>AutoCompleteUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\HitConverter.cs" />
     <Compile Include="ViewModel\HitViewModel.cs" />
     <Compile Include="ViewModel\IHitViewModel.cs" />
     <Compile Include="ViewModel\IReportViewModel.cs" />
-    <Compile Include="Converters\ReportConverter.cs" />
+    <Compile Include="ViewModel\ReportConverter.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
+    <Compile Include="Views\AsherGUISpace.xaml.cs">
+      <DependentUpon>AsherGUISpace.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\mapWindow.xaml.cs">
       <DependentUpon>mapWindow.xaml</DependentUpon>
     </Compile>
@@ -208,6 +213,14 @@
     <Compile Include="Views\New_Report.xaml.cs">
       <DependentUpon>New_Report.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControles\AutoCompleteUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AsherGUISpace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -261,9 +274,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">
