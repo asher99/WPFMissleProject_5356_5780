@@ -1,5 +1,4 @@
-﻿using PL.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,27 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL.Views
+namespace PL.UserControles
 {
     /// <summary>
-    /// Interaction logic for New_Hit.xaml
+    /// Interaction logic for AutoCompleteUC.xaml
     /// </summary>
-    public partial class New_Hit : Window
+    public partial class AutoCompleteUC : UserControl
     {
-        public HitViewModel hitViewModel { set; get; }
-
-        public New_Hit()
+        public AutoCompleteUC()
         {
             InitializeComponent();
-            hitViewModel = new HitViewModel();
-            this.DataContext = hitViewModel;
-        }
-
-        private void Submit_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
