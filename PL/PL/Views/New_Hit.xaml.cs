@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,6 +22,7 @@ namespace PL.Views
     public partial class New_Hit : Window
     {
         public HitViewModel hitViewModel { set; get; }
+        //public AutoCompleteBox
 
         public New_Hit()
         {
@@ -32,6 +34,11 @@ namespace PL.Views
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void HitLocation_TextChanged(object sender, RoutedEventArgs e)
+        {
+            hitViewModel.TextChange(location.Text);
         }
     }
 }

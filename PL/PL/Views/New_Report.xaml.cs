@@ -32,5 +32,10 @@ namespace PL.Views
         {
 
         }
+
+        private void ReportLocation_TextChanged(object sender, RoutedEventArgs e)
+        {
+            reportViewModel.TextChange(Location.Text);
+        }
     }
 }
