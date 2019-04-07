@@ -18,30 +18,42 @@ namespace PL.ViewModel
         public ObservableCollection<string> locations { get; set; }
         public MissleModel currentModel { set; get; }
 
-        public Hit incomingHit{ set; get; }
-}
+        public Hit incomingHit
+        {
+            get { return currentModel.incomingHit; }
+            set
+            {
+                currentModel.incomingHit = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("incomingHit"));
+            }
+        }
 
-public void TextChange(string leters)
-{
-    if (currentModel.checkLocations(leters))
-    {
-        locations = new ObservableCollection<string>(currentModel.locations);
-        locations.CollectionChanged += locations_CollectionChanged;
+        public void TextChange(string leters)
+        {
+            if (currentModel.checkLocations(leters))
+            {
+                locations = new ObservableCollection<string>(currentModel.locations);
+                locations.CollectionChanged += locations_CollectionChanged;
+            }
+            return;
+        }
+
+        private void locations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            ///////do the observer
+            return;
+
+        }
+
+        AddHitCommand addHitCommand { set; get; }
+
+        public HitViewModel()
+        {
+            currentModel = new MissleModel();
+            addHitCommand = new AddHitCommand(this);
+            locations = new ObservableCollection<string>(currentModel.locations);
+        }
+
     }
 }
-
-private void locations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-{
-    ///////do the observer
-}
-
-AddHitCommand addHitCommand { set; get; }
-
-public HitViewModel()
-{
-    currentModel = new MissleModel();
-    addHitCommand = new AddHitCommand(this);
-    locations = new ObservableCollection<string>(currentModel.locations);
-}
-
-    }

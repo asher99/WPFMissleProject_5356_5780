@@ -195,11 +195,9 @@
     <Compile Include="Converters\HitConverter.cs" />
     <Compile Include="Converters\ReportConverter.cs" />
     <Compile Include="Converters\StringToGeoCoordinate.cs" />
-    <Compile Include="ViewModel\HitConverter.cs" />
     <Compile Include="ViewModel\HitViewModel.cs" />
     <Compile Include="ViewModel\IHitViewModel.cs" />
     <Compile Include="ViewModel\IReportViewModel.cs" />
-    <Compile Include="ViewModel\ReportConverter.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
     <Compile Include="Views\mapWindow.xaml.cs">
       <DependentUpon>mapWindow.xaml</DependentUpon>
@@ -279,5 +277,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\logo.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
@@ -16,11 +17,20 @@ namespace PL.ViewModel
     {
         public MissleModel currentModel { set; get; }
 
-        public ObservableCollection<string> locations { get; set; }
-
+        public ObservableCollection<string> locations
+        {
+            get
+            {
+                return new ObservableCollection<string>(currentModel.locations);
+            }
+        }
         public AddReportCommand addReportCommand { set; get; }
-
         public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public Report incomingReport
         {
@@ -37,15 +47,11 @@ namespace PL.ViewModel
         {
             if (currentModel.checkLocations(leters))
             {
-                locations = new ObservableCollection<string>(currentModel.locations);
-                locations.CollectionChanged += locations_CollectionChanged;
+
             }
+            return;
         }
 
-        private void locations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            ///////do the observer
-        }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -54,6 +60,11 @@ namespace PL.ViewModel
         {
             currentModel = new MissleModel();
             addReportCommand = new AddReportCommand(this);
+            currentModel.PropertyChanged += (Property, EventArgs) =>
+            {
+                if (EventArgs.PropertyName == "locations")
+                    OnPropertyChanged("locations");
+            };
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
@@ -12,11 +14,30 @@ using GoogleMapsApi.Entities.PlaceAutocomplete.Request;
 
 namespace PL.Model
 {
-    public class MissleModel
+    public class MissleModel: INotifyPropertyChanged
     {
         private static string googleMapsKey = ConfigurationSettings.AppSettings.Get("GoogleMapsKey");
-        public List<string> locations { set; get; }
+        private List<string> _locations;
+        public List<string> locations
+        {
+            get
+            {
+                return _locations;
+            }
+            set
+            {
+                _locations = value;
+                OnPropertyChanged();
+            }
+        }
         BLL_imp currentBll;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public MissleModel()
         {

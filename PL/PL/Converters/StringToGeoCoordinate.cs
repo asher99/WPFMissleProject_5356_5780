@@ -14,7 +14,7 @@ namespace PL.Converters
 {
     class StringToGeoCoordinate
     {
-        private static string googleMapsKey = "AIzaSyC2z5jSiWtVK - R8rgRk87ZcCBMvmGIusWk";
+        private static string googleMapsKey = ConfigurationSettings.AppSettings.Get("GoogleMapsKey");
         string address;
         bool flag = false;
         public GeoCoordinate CurrentLocation { set; get; }
