@@ -73,7 +73,6 @@ namespace BLL
                             report_List[i].clusterId = j;
                         }
                     }
-
                 }
 
                 // finds new center points of each cluster
@@ -115,6 +114,37 @@ namespace BLL
         public void addHit(Hit hit)
         {
             currentDal.addHit(hit);
+        }
+
+        public void removeHit(Hit _hit)
+        {
+            currentDal.removeHit(_hit);
+        }
+
+        public void removeReport(Report _report)
+        {
+            currentDal.removeReport(_report);
+        }
+
+        public void updateReport(Report _report)
+        {
+            currentDal.updateReport(_report);
+        }
+
+        public void updateHit(Hit _hit)
+        {
+            currentDal.updateHit(_hit);
+        }
+
+        // reading methods
+        public Task<List<Report>> getAllReports()
+        {
+            return currentDal.getAllReports();
+        }
+
+        public Task<List<Hit>> getAllHits()
+        {
+            return currentDal.getAllHits();
         }
     }
     

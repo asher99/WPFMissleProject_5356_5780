@@ -44,9 +44,9 @@ namespace PL.Commands
             var values = (object[])parameter;
             Report report = new Report();
             report.name = (string)values[0];
-            report.timeOfReport = (DateTime)values[1];
+            report.timeOfReport = DateTime.Parse( values[1].ToString());
             report.address = (GeoCoordinate)values[2];
-            report.numOfBombs = (int)values[3];
+            report.numOfBombs = int.Parse( values[3].ToString());
             CurrentVM.incomingReport = report;
         }
     }
