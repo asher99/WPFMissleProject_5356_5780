@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
+using System.Device.Location;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -18,6 +19,7 @@ namespace PL.Model
     {
         private static string googleMapsKey = ConfigurationSettings.AppSettings.Get("GoogleMapsKey");
         private List<string> _locations;
+        private BLL_imp currentBll;
         public List<string> locations
         {
             get
@@ -30,7 +32,6 @@ namespace PL.Model
                 OnPropertyChanged();
             }
         }
-        BLL_imp currentBll;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -98,6 +99,51 @@ namespace PL.Model
                 }
                 catch (Exception) { throw; }
             }
+        }
+
+        public List<Report> getReportsByDates(DateTime startDate, DateTime endDate)
+        {
+            if (String.IsNullOrEmpty(startDate.ToString())|| String.IsNullOrEmpty(endDate.ToString())||startDate>endDate)
+            {
+                return null;
+            }
+            Task<List<Report>> reports = currentBll.getAllReports();
+            List<Report> result = new List<Report>();
+            foreach (var item in result)
+            {
+                if (item.timeOfReport>=startDate&&item.timeOfReport<=endDate)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+
+        public Microsoft.Maps.MapControl.WPF.Location Center (List<Report> listOfReport)
+        {
+            double latitude_Min;
+            double latitude_Max;
+            double longitude_Min;
+            double longitude_Max;
+            double latitude_Center;
+            double longitude_Center;
+
+            if (listOfReport.Count == 0)
+            {
+                return null;
+            }
+            latitude_Min = listOfReport.Min(r => r.address.Latitude);
+            latitude_Max = listOfReport.Max(r => r.address.Latitude);
+            longitude_Min = listOfReport.Min(r => r.address.Longitude);
+            longitude_Max = listOfReport.Max(r => r.address.Longitude);
+            latitude_Center = (latitude_Min + latitude_Max) / 2;
+            longitude_Center = (longitude_Min + longitude_Max) / 2;
+            return new Microsoft.Maps.MapControl.WPF.Location(latitude_Center, longitude_Center);
+        }
+
+        public List<GeoCoordinate> HitByK_Means(List<Report> check_list, int k)
+        {
+            return currentBll.k_Means(check_list, k);
         }
     }
 }

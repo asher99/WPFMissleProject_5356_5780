@@ -30,14 +30,14 @@
 
             <StackPanel Grid.Row="1">
                 <Button Content="Report" Click="Report_Click" Height="63"/>
-                <Button Content="Verified hits" Height="63"/>
-                <Button Content="Data Analysis" Height="63"/>
-                <Button Content="Browse reports" Height="63"/>
+                <Button Content="Verified hits" Click="VerifiedHits_Click"  Height="63"/>
+                <Button Content="Data Analysis" Click="DataAnalysis_Click" Height="63"/>
+                <Button Content="Browse reports" Click="BrowseReports_Click" Height="63"/>
             </StackPanel>
             <Image Grid.Row="0" Source="../Images/logo.jpg" />
         </Grid>
         <m:Map x:Name="myMap" Grid.Column="1" CredentialsProvider="g6V40OMcf2NNJe07qiWD~NhB3DL-oqtYSkUHB5kellQ~Avi_2hYLQtKCC8iFOuBjMx1EQfprwDIzkz782VgpYms7401vYZDrNepSNkxyW_nJ " 
-               Mode="Road" Center="31,35" ZoomLevel="7.5" Grid.RowSpan="2">
+               Mode="Road" Center="31.5,35" ZoomLevel="7.2" Grid.RowSpan="2">
             <Label FontSize="36" FontStyle="Italic" Foreground="SandyBrown" Content="welcome to the MISSELE PROJECT" HorizontalAlignment="Center" VerticalAlignment="Top" />
         </m:Map>
 

@@ -32,5 +32,23 @@ namespace PL
             New_Report report = new New_Report();
             report.Show();
         }
+
+        private void VerifiedHits_Click(object sender, RoutedEventArgs e)
+        {
+            New_Hit hit = new New_Hit();
+            hit.Show();
+        }
+
+        private void DataAnalysis_Click(object sender, RoutedEventArgs e)
+        {
+            Data_Analysis data_Analysis = new Data_Analysis();
+            data_Analysis.Show();
+        }
+
+        private void BrowseReports_Click(object sender, RoutedEventArgs e)
+        {
+            Browse_Report browse_Report = new Browse_Report();
+            browse_Report.Show();
+        }
     }
 }
