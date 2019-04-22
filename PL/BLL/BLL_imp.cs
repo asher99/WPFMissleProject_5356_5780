@@ -18,6 +18,11 @@ namespace BLL
             currentDal = new Dal_imp();
         }
 
+        public void moking()
+        {
+            currentDal.moking();
+        }
+
         /// <summary>
         ///  the algorithm gets a list of reports and a number K. 
         ///  the algorithm finds K clusters and assigns for each report a cluster.

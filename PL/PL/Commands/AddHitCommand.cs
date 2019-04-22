@@ -44,7 +44,7 @@ namespace PL.Commands
         {
             var values = (object[])parameter;
             Hit hit = new Hit();
-            hit.locationImage = (Image)values[0];
+            //hit.locationImage = (Image)values[0];
             hit.timeOfHit = (DateTime)values[1];
             hit.address = (GeoCoordinate)values[2];
             CurrentVM.incomingHit = hit;

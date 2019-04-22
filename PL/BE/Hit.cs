@@ -15,7 +15,7 @@ namespace BE
         public int EventID { get; set; }
         public DateTime timeOfHit { set; get; }
         public GeoCoordinate address { set; get; } // Location
-        public Image locationImage { set; get; }
+        //public Image locationImage { set; get; }
         
     }
 }

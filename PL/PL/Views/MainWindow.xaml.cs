@@ -26,6 +26,8 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+            BLL_imp cur = new BLL_imp();
+            cur.moking();
         }
         
         private void Report_Click(object sender, RoutedEventArgs e)

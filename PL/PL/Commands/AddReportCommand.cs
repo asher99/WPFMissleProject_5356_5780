@@ -29,6 +29,7 @@ namespace PL.Commands
         {
             bool result = true;
             var values = (object[])parameter;
+            if(values != null) { 
             foreach (var item in values)
             {
                 if (item == null)
@@ -36,7 +37,9 @@ namespace PL.Commands
                     result = false;
                 }
             }
+            }
             return result;
+            
         }
 
         public void Execute(object parameter)
