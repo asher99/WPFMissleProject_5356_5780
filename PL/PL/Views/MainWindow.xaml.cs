@@ -32,8 +32,10 @@ namespace PL
         
         private void Report_Click(object sender, RoutedEventArgs e)
         {
-            New_Report report = new New_Report();
-            report.Show();
+            //New_Report report = new New_Report();
+            // report.Show();
+            asher ash = new asher();
+            ash.Show();
         }
 
         private void VerifiedHits_Click(object sender, RoutedEventArgs e)

@@ -201,6 +201,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\asher.xaml.cs">
+      <DependentUpon>asher.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\HitConverter.cs" />
     <Compile Include="Converters\ReportConverter.cs" />
     <Compile Include="Converters\StringToGeoCoordinate.cs" />
@@ -224,6 +227,16 @@
     <Compile Include="Views\New_Report.xaml.cs">
       <DependentUpon>New_Report.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControlCreate.xaml.cs">
+      <DependentUpon>UserControlCreate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlHome.xaml.cs">
+      <DependentUpon>UserControlHome.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\asher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Browse_Report.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +268,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\New_Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
