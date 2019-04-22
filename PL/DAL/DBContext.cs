@@ -11,9 +11,8 @@ namespace DAL
 {
     public class DBContext : DbContext
     {
-        public DBContext() : base("MissileDB")
+        public DBContext() : base("DBContext")
         {
-            Database.SetInitializer<DBContext>(new CreateDatabaseIfNotExists<DBContext>());
         }
 
         public DbSet<Report> Reports { get; set; }

@@ -21,5 +21,16 @@ namespace BE
         /// an id report to cluster for k-means algo
         /// </summary>
         public int clusterId { get; set; } 
+
+       public  Report(int id, DateTime date, string _name, int falls)
+        {
+            EventID = id;
+            timeOfReport = date;
+            name = _name;
+            address = new GeoCoordinate(1.23,3.45);
+            numOfBombs = falls;
+        }
+
+        public Report(){ }
     }
 }

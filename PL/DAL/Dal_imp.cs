@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Data.Entity;
 using BE;
-
 namespace DAL
 {
     public class Dal_imp : IDAL
@@ -23,8 +23,7 @@ namespace DAL
                 ctx.Reports.Add(_report);
                 await ctx.SaveChangesAsync();
             }
-        }
-
+        }       
 
         public async void removeReport(Report _report)
         {
