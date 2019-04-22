@@ -23,9 +23,9 @@ namespace PL.Views
         public ReportViewModel reportViewModel { set; get; }
         public New_Report()
         {
-            InitializeComponent();
             reportViewModel = new ReportViewModel();
             this.DataContext = reportViewModel;
+            InitializeComponent();            
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)

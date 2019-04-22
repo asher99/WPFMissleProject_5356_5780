@@ -28,6 +28,10 @@ namespace BLL
         /// <returns></returns>
         public List<GeoCoordinate> k_Means(List<Report> report_List, int k)
         {
+            if (k>report_List.Count)
+            {
+                k = report_List.Count;
+            }
             // Initiates list of central points       
             List<GeoCoordinate> ci_List = new List<GeoCoordinate>();
             double latitude_Min;
@@ -39,12 +43,12 @@ namespace BLL
             {
                 return null;
             }
-            // We will generate k central point by finding random points in the surrounded area
             latitude_Min = report_List.Min(r => r.address.Latitude);
             latitude_Max = report_List.Max(r => r.address.Latitude);
             longitude_Min = report_List.Min(r => r.address.Longitude);
             longitude_Max = report_List.Max(r => r.address.Longitude);
 
+            // We will generate k central point by finding random points in the surrounded area
             for (int i = 0; i < k; i++)
             {
                 Random r = new Random();
