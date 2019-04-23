@@ -6,7 +6,7 @@
         xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         xmlns:local1="clr-namespace:PL.Converters"
         mc:Ignorable="d"
-        Title="New_Hit" Height="350" Width="300">
+        Title="New_Hit" Height="350" Width="300" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local1:HitConverter x:Key="hitConverter"></local1:HitConverter>
     </Window.Resources>

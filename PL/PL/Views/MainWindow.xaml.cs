@@ -22,20 +22,31 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
         public MainWindow()
         {
             InitializeComponent();
             BLL_imp cur = new BLL_imp();
             cur.moking();
         }
-        
+
+        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Visible;
+            ButtonOpenMenu.Visibility = Visibility.Collapsed;
+        }
+
+        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            ButtonOpenMenu.Visibility = Visibility.Visible;
+        }
+
+
         private void Report_Click(object sender, RoutedEventArgs e)
         {
-            //New_Report report = new New_Report();
-            // report.Show();
-            asher ash = new asher();
-            ash.Show();
+            New_Report report = new New_Report();
+            report.Show();
         }
 
         private void VerifiedHits_Click(object sender, RoutedEventArgs e)
@@ -54,6 +65,26 @@ namespace PL
         {
             Browse_Report browse_Report = new Browse_Report();
             browse_Report.Show();
+        }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UserControl usc = null;
+            GridMain.Children.Clear();
+
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "ItemHome":
+                    usc = new UserControlHome();
+                    GridMain.Children.Add(usc);
+                    break;
+                case "ItemCreate":
+                    usc = new UserControlCreate();
+                    GridMain.Children.Add(usc);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

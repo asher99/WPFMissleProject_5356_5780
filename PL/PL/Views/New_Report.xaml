@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"       
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local1="clr-namespace:PL.Converters"
         mc:Ignorable="d"
-        Title="New_Report" Height="400" Width="300">
+        Title="New_Report" Height="400" Width="300" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <local1:ReportConverter x:Key="reportConverter"></local1:ReportConverter>
@@ -16,8 +16,8 @@
     <Grid>
         <Label FontSize="20" Content="Please fill the next fields" HorizontalAlignment="Center" Margin="0,10" VerticalAlignment="Top"/>
         <TextBox x:Name="Name" HorizontalAlignment="Center" Height="23" Margin="139,60,60,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"/>
-         <TextBox x:Name="Time" HorizontalAlignment="Center" Height="23" Margin="139,108,60,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"/> 
-        <!--<StackPanel  Orientation="Horizontal" Margin="-10,-53,10,53">
+       <TextBox x:Name="Time" HorizontalAlignment="Center" Height="23" Margin="139,108,60,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"/> 
+        <!-- <StackPanel x:Name="Time" Orientation="Horizontal" Margin="-10,-53,10,53">
             <TextBlock Text="{Binding Time, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" VerticalAlignment="Center" FontSize="24" />
             <Button Margin="139,153,60,184" Content="Pick the time" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" materialDesign:DialogHost.DialogOpenedAttached="CombinedDialogOpenedEventHandler" materialDesign:DialogHost.DialogClosingAttached="CombinedDialogClosingEventHandler">
                 <Button.CommandParameter>
@@ -40,7 +40,7 @@
         </StackPanel>-->
         <toolkit:AutoCompleteBox x:Name="Location" TextChanged="ReportLocation_TextChanged"  ItemsSource="{Binding locations}"  Margin="100,226,46,98" />
         <TextBox x:Name="NumOfFalls" HorizontalAlignment="Center" Height="23" Margin="139,170,60,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"/>
-        <!--<ComboBox materialDesign:HintAssist.Hint="(editable)" MinWidth="72" Margin="139,170,60,0" VerticalAlignment="Top" IsEditable="True" ItemsSource="{Binding LongListToTestComboVirtualization}">
+        <!-- <ComboBox materialDesign:HintAssist.Hint="(editable)" MinWidth="72" Margin="139,170,60,0" VerticalAlignment="Top" IsEditable="True" ItemsSource="{Binding LongListToTestComboVirtualization}">
             <ComboBox.Text>
                 <Binding x:Name="NumOfFalls" Path="SelectedTextTwo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
