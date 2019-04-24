@@ -86,5 +86,10 @@ namespace PL
                     break;
             }
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

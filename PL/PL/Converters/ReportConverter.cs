@@ -8,7 +8,7 @@ using System.Device.Location;
 using System.Windows.Controls;
 using System.Windows.Input;
 using PL.Views;
-
+using System.Windows;
 
 namespace PL.Converters
 {
@@ -19,6 +19,7 @@ namespace PL.Converters
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
+            ///
             CurrentLocation = new GeoCoordinate();
             string address = values[2].ToString();
             convertAddress = new StringToGeoCoordinate(address);
@@ -27,6 +28,16 @@ namespace PL.Converters
                 CurrentLocation = convertAddress.startConvert();
             }
             values[2] = CurrentLocation;
+
+            ///
+            //DateTime tempDateTime = new DateTime();
+            //tempDateTime = DateTime.Parse(values[1].ToString());
+            //tempDateTime.AddMonths(((DateTime)values[1]).Month);
+            //tempDateTime.AddYears(((DateTime)values[1]).Year);
+            //tempDateTime.AddHours(((TimeSpan)values[4]).Hours);
+            //tempDateTime.AddMinutes(((TimeSpan)values[4]).Minutes);
+            //values[1] = tempDateTime;
+
             return values.Clone();
         }
 

@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:sys1="clr-namespace:System;assembly=mscorlib"
         xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"       
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
@@ -14,60 +16,38 @@
         <local1:ReportConverter x:Key="reportConverter"></local1:ReportConverter>
     </Window.Resources>
     <Grid>
-        <Label FontSize="20" Content="Please fill the next fields" HorizontalAlignment="Center" Margin="0,10" VerticalAlignment="Top"/>
-        <TextBox x:Name="Name" HorizontalAlignment="Center" Height="23" Margin="139,60,60,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"/>
-       <TextBox x:Name="Time" HorizontalAlignment="Center" Height="23" Margin="139,108,60,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"/> 
-        <!-- <StackPanel x:Name="Time" Orientation="Horizontal" Margin="-10,-53,10,53">
-            <TextBlock Text="{Binding Time, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" VerticalAlignment="Center" FontSize="24" />
-            <Button Margin="139,153,60,184" Content="Pick the time" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" materialDesign:DialogHost.DialogOpenedAttached="CombinedDialogOpenedEventHandler" materialDesign:DialogHost.DialogClosingAttached="CombinedDialogClosingEventHandler">
-                <Button.CommandParameter>
-                    <Grid Margin="-1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0"  Orientation="Horizontal">
-                            <Calendar x:Name="CombinedCalendar" Margin="-1 -4 -1 0" />
-                            <materialDesign:Clock x:Name="CombinedClock" DisplayAutomation="CycleWithSeconds" Is24Hours="True" />
-                        </StackPanel>
-                        <StackPanel Grid.Row="1" Margin="8" HorizontalAlignment="Right" Orientation="Horizontal">
-                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="0" Style="{DynamicResource MaterialDesignFlatButton}" Content="CANCEL"/>
-                            <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandParameter="1" Style="{DynamicResource MaterialDesignFlatButton}" Content="OK"/>
-                        </StackPanel>
-                    </Grid>
-                </Button.CommandParameter>
-            </Button>
-        </StackPanel>-->
-        <toolkit:AutoCompleteBox x:Name="Location" TextChanged="ReportLocation_TextChanged"  ItemsSource="{Binding locations}"  Margin="100,226,46,98" />
-        <TextBox x:Name="NumOfFalls" HorizontalAlignment="Center" Height="23" Margin="139,170,60,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93"/>
-        <!-- <ComboBox materialDesign:HintAssist.Hint="(editable)" MinWidth="72" Margin="139,170,60,0" VerticalAlignment="Top" IsEditable="True" ItemsSource="{Binding LongListToTestComboVirtualization}">
-            <ComboBox.Text>
-                <Binding x:Name="NumOfFalls" Path="SelectedTextTwo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <domain1:NotEmptyValidationRule ValidatesOnTargetUpdated="True" xmlns:domain1="clr-namespace:MaterialDesignDemo.Domain" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </ComboBox.Text>
-            <ComboBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel />
-                </ItemsPanelTemplate>
-            </ComboBox.ItemsPanel>
-        </ComboBox>-->
-        <Button Command="{Binding addReportCommand}" Content="submit" HorizontalAlignment="Center" Margin="110,311,106,0"  VerticalAlignment="Top" Click="Submit_Click" Width="76" Height="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="79*"/>
+            <RowDefinition Height="75*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="95*"/>
+        </Grid.ColumnDefinitions>
+        <Label FontSize="20" Content="Please fill the next fields" HorizontalAlignment="Center" Margin="36,10,36,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="37" Width="220"/>
+        <TextBox x:Name="Name" Grid.Column="1" Grid.Row="1"/>
+        <TextBox x:Name="Date" Grid.Column="1" Grid.Row="2" Text="{Binding Source={x:Static sys:DateTime.Now}, Mode=OneWay, StringFormat=dd/MM/yyyy HH\\:MM}"/>        
+        <toolkit:AutoCompleteBox x:Name="Location" TextChanged="ReportLocation_TextChanged" ItemsSource="{Binding locations}" Grid.Row="5" Grid.Column="1" />
+        <TextBox x:Name="NumOfFalls" Grid.Column="1" Grid.Row="4"/>        
+        <Button Command="{Binding addReportCommand}" Content="submit" Click="Submit_Click" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="6" Margin="0,22,0,21" Height="Auto">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource reportConverter}">
                     <Binding Path="Text" ElementName="Name"/>
-                    <Binding Path="Text" ElementName="Time"/>
+                    <Binding Path="Text" ElementName="Date"/>
                     <Binding Path="Selectedlocation" ElementName="Location"/>
                     <Binding Path="Text" ElementName="NumOfFalls"/>
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
-        <Label Content="name:" HorizontalAlignment="Left" Margin="26,65,0,0" VerticalAlignment="Top"/>
-        <Label Content="Time:" HorizontalAlignment="Left" Margin="26,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.414,0.263"/>
-        <Label Content="Location:" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.428,0.068"/>
-        <Label Content="Number of falls:" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top"/>
+        <Label Content="name:" HorizontalAlignment="Left" Margin="26,13,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="42"/>
+        <Label Content="Date:" HorizontalAlignment="Left" Margin="26,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.414,0.263" Grid.Row="2" Height="26" Width="38"/>
+        <Label Content="Location:" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.428,0.068" Grid.Row="5" Height="26" Width="58"/>
+        <Label Content="Number of falls:" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="4" Height="26" Width="94"/>
 
     </Grid>
 </Window>

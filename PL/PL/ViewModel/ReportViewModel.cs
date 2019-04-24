@@ -16,7 +16,7 @@ namespace PL.ViewModel
 
     {
         public MissleModel currentModel { set; get; }
-
+        public TimeSpan thisTime=new TimeSpan();
         public ObservableCollection<string> locations
         {
             get

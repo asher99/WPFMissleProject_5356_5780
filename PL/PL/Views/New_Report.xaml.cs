@@ -23,6 +23,7 @@ namespace PL.Views
         public ReportViewModel reportViewModel { set; get; }
         public New_Report()
         {
+            
             reportViewModel = new ReportViewModel();
             this.DataContext = reportViewModel;
             InitializeComponent();            

@@ -51,7 +51,7 @@ namespace PL.Model
             get { return incomingReport; }
             set
             {
-                incomingReport = value;
+                incomingReport = (Report)value;
                 currentBll.addReport(value);
             }
         }
