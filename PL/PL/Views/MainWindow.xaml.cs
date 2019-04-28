@@ -70,7 +70,7 @@ namespace PL
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UserControl usc = null;
-            GridMain.Children.Clear();
+            //GridMain.Children.Clear();
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
@@ -89,7 +89,7 @@ namespace PL
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }
