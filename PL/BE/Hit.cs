@@ -14,8 +14,14 @@ namespace BE
         [Key]
         public int EventID { get; set; }
         public DateTime timeOfHit { set; get; }
-        public GeoCoordinate address { set; get; } // Location
+        public double Latitude { get; set; }// Location
+        public double Longitude { get; set; }
         //public Image locationImage { set; get; }
-        
+
+
+        public GeoCoordinate GetCoordinate()
+        {
+            return new GeoCoordinate(Latitude, Longitude);
+        }
     }
 }

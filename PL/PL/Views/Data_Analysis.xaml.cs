@@ -41,8 +41,8 @@ namespace PL.Views
             Location tempLocation = new Location();
             foreach (var item in dataAnalysisViewModel.allCurrentReport)
             {
-                tempLocation.Latitude = item.address.Latitude;
-                tempLocation.Longitude = item.address.Longitude;
+                tempLocation.Latitude = item.Latitude;
+                tempLocation.Longitude = item.Longitude;
                 pin.Location = tempLocation;
                 pin.Background = new SolidColorBrush(ToMediaColor(System.Drawing.Color.FromName("Red")));
                 myMap.Children.Add(pin);

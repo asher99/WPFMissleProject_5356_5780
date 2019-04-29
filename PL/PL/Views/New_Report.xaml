@@ -34,7 +34,8 @@
         </Grid.ColumnDefinitions>
         <Label FontSize="20" Content="Report on missile attack" HorizontalAlignment="Center" Margin="36,10,36,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="auto" Width="auto"/>
         <TextBox x:Name="Name" Margin="8,8,8,8" Grid.Column="1" Grid.Row="1"/>
-        <TextBox x:Name="Date" Margin="8,8,8,8" Grid.Column="1" Grid.Row="2" Text="{Binding Source={x:Static sys:DateTime.Now}, Mode=OneWay, StringFormat=dd/MM/yyyy HH\\:MM}"/>
+         <TextBox x:Name="Date" Margin="8,8,8,8" Grid.Column="1" Grid.Row="2" Text="{Binding Source={x:Static sys:DateTime.Now}, Mode=OneWay, StringFormat=dd/MM/yyyy HH\\:MM}"/>
+       <!-- <materialDesign:TimePicker x:Name="Date" Margin="8,8,8,8" Grid.Column="1" Grid.Row="2" Is24Hours="True" Width="auto" SelectedTimeChanged="PresetTimePicker_SelectedTimeChanged" />-->
         <toolkit:AutoCompleteBox  x:Name="Location" Margin="8,8,8,8" TextChanged="ReportLocation_TextChanged" ItemsSource="{Binding locations}" Grid.Row="5" Grid.Column="1" />
         <TextBox x:Name="NumOfFalls" Margin="10,8,8,8" Grid.Column="1" Grid.Row="4"/>        
         <Button  Command="{Binding addReportCommand}" Content="SUBMIT" Click="Submit_Click" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="6" Margin="20,22,20,21" Height="Auto">

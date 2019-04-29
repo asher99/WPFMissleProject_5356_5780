@@ -132,10 +132,10 @@ namespace PL.Model
             {
                 return null;
             }
-            latitude_Min = listOfReport.Min(r => r.address.Latitude);
-            latitude_Max = listOfReport.Max(r => r.address.Latitude);
-            longitude_Min = listOfReport.Min(r => r.address.Longitude);
-            longitude_Max = listOfReport.Max(r => r.address.Longitude);
+            latitude_Min = listOfReport.Min(r => r.Latitude);
+            latitude_Max = listOfReport.Max(r => r.Latitude);
+            longitude_Min = listOfReport.Min(r => r.Longitude);
+            longitude_Max = listOfReport.Max(r => r.Longitude);
             latitude_Center = (latitude_Min + latitude_Max) / 2;
             longitude_Center = (longitude_Min + longitude_Max) / 2;
             return new Microsoft.Maps.MapControl.WPF.Location(latitude_Center, longitude_Center);

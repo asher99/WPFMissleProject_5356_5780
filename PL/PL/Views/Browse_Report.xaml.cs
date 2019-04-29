@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Syncfusion.UI.Xaml;
+
 namespace PL.Views
 {
     /// <summary>
@@ -21,16 +21,7 @@ namespace PL.Views
     {
         public Browse_Report()
         {
-            InitializeComponent();
-           /* SfChart chart = new SfChart();
-
-            CategoryAxis primaryAxis = new CategoryAxis();
-
-            chart.PrimaryAxis = primaryAxis;
-
-            NumericalAxis secondaryAxis = new NumericalAxis();
-
-            chart.SecondaryAxis = secondaryAxis;*/
+            InitializeComponent();          
         }
     }
 }

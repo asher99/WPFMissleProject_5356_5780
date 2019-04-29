@@ -46,7 +46,9 @@ namespace PL.Commands
             Hit hit = new Hit();
             //hit.locationImage = (Image)values[0];
             hit.timeOfHit = (DateTime)values[1];
-            hit.address = (GeoCoordinate)values[2];
+            GeoCoordinate coord = (GeoCoordinate)values[2];
+            hit.Latitude = coord.Latitude;
+            hit.Longitude = coord.Longitude;
             CurrentVM.incomingHit = hit;
         }
     }

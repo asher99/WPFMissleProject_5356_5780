@@ -48,10 +48,10 @@ namespace BLL
             {
                 return null;
             }
-            latitude_Min = report_List.Min(r => r.address.Latitude);
-            latitude_Max = report_List.Max(r => r.address.Latitude);
-            longitude_Min = report_List.Min(r => r.address.Longitude);
-            longitude_Max = report_List.Max(r => r.address.Longitude);
+            latitude_Min = report_List.Min(r => r.Latitude);
+            latitude_Max = report_List.Max(r => r.Latitude);
+            longitude_Min = report_List.Min(r => r.Longitude);
+            longitude_Max = report_List.Max(r => r.Longitude);
 
             // We will generate k central point by finding random points in the surrounded area
             for (int i = 0; i < k; i++)
@@ -69,13 +69,13 @@ namespace BLL
                 is_Changed = false;
                 // For each report we will find its closest center point
                 for (int i = 0; i < report_List.Count; i++)
-                {
-                    double min = report_List[i].address.GetDistanceTo(ci_List[0]);
+                { 
+                    double min = report_List[i].GetCoordinate().GetDistanceTo(ci_List[0]);
                     report_List[i].clusterId = 0;
 
                     for (int j = 1; j < ci_List.Count; j++)
                     {
-                        double temp = report_List[i].address.GetDistanceTo(ci_List[j]);
+                        double temp = report_List[i].GetCoordinate().GetDistanceTo(ci_List[j]);
                         if (temp < min)
                         {
                             min = temp;
@@ -95,8 +95,8 @@ namespace BLL
                 {
                     if (report_List[i].clusterId==id)
                     {
-                        c_LatitudeSum += report_List[i].address.Latitude;
-                        c_LongitudeSum += report_List[i].address.Longitude;
+                        c_LatitudeSum += report_List[i].Latitude;
+                        c_LongitudeSum += report_List[i].Longitude;
                         counter++;
                     }
                     if (report_List[i].clusterId != id)

@@ -27,13 +27,18 @@ namespace DAL
 
         public void moking()
         {
-           /* Report report = new Report(1234, DateTime.Now, "moshe", 2);
-            using (var ctx = new DBContext())
-            {
-                ctx.Reports.Add(report);
-                ctx.SaveChanges();
-            }*/
-            
+            /*
+            Report report = new Report() {
+                Latitude = 1.2,Longitude = 2.7
+       
+
+                 };
+             using (var ctx = new DBContext())
+             {
+                 ctx.Reports.Add(report);
+                 ctx.SaveChanges();
+             } 
+*/
         }
 
         public async void removeReport(Report _report)
