@@ -24,18 +24,6 @@ namespace BE
         /// </summary>
         public int clusterId { get; set; } 
 
-       public  Report(int id, DateTime date, string _name, int falls)
-        {
-            EventID = id;
-            timeOfReport = date;
-            name = _name;
-            Latitude = 3.45;
-            Longitude = 1.23;
-            numOfBombs = falls;
-        }
-
-        public Report(){ }
-
         public GeoCoordinate GetCoordinate()
         {
             return new GeoCoordinate(Latitude, Longitude);

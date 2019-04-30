@@ -20,6 +20,7 @@ namespace PL.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             ///
+            object[] val = new object[5];
             CurrentLocation = new GeoCoordinate();
             string address = values[2].ToString();
             convertAddress = new StringToGeoCoordinate(address);
@@ -27,8 +28,12 @@ namespace PL.Converters
             {
                 CurrentLocation = convertAddress.startConvert();
             }
-            values[2] = CurrentLocation;
-
+            // 
+            val[0] = values[0];
+            val[1] = values[1];
+            val[2] = CurrentLocation.Latitude;
+            val[3] = CurrentLocation.Longitude;
+            val[4] = values[3];
             ///
             //DateTime tempDateTime = new DateTime();
             //tempDateTime = DateTime.Parse(values[1].ToString());
@@ -38,7 +43,7 @@ namespace PL.Converters
             //tempDateTime.AddMinutes(((TimeSpan)values[4]).Minutes);
             //values[1] = tempDateTime;
 
-            return values.Clone();
+            return val;//values.Clone();
         }
 
 

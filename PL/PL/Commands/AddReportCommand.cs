@@ -47,11 +47,11 @@ namespace PL.Commands
             var values = (object[])parameter;
             Report report = new Report();
             report.name = (string)values[0];
-            report.timeOfReport = DateTime.Parse( values[1].ToString());            
-            GeoCoordinate coord = (GeoCoordinate)values[2];
-            report.Latitude = coord.Latitude;
-            report.Longitude = coord.Longitude;
-            report.numOfBombs = int.Parse( values[3].ToString());
+            report.timeOfReport = DateTime.Parse( values[1].ToString());
+            // GeoCoordinate coord = (GeoCoordinate)values[2];
+            report.Latitude = (double)values[2];//coord.Latitude;
+            report.Longitude = (double)values[3];//  coord.Longitude;
+            report.numOfBombs = int.Parse( values[4].ToString());
             CurrentVM.incomingReport = report;
         }
     }

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:PL.Views"
         mc:Ignorable="d"
@@ -47,7 +48,7 @@
         <Label Content="Number of events:" Grid.Row="5" Margin="5" />
         <TextBox x:Name="eventNum" TextWrapping="Wrap" Text="{Binding eventNum}" Grid.Row="5" Grid.Column="1" Margin="5"/>
         <Button Content="Display" Click="DisplayButton_Click" Grid.Row="6" Margin="5" Grid.ColumnSpan="2"/>
-        <Label Content="for using at K-Means algorithem insert the k number:" Grid.Row="7" Grid.ColumnSpan="2" />
+        <Label Content="for using at K-Means algorithm insert the k number:" Grid.Row="7" Grid.ColumnSpan="2" />
         <TextBox Text="{Binding K_Means}" Grid.Row="8" Grid.ColumnSpan="2" Margin="5,5,150,5"/>
         <CheckBox Content="Aerial photography" Unchecked="MapCheckBox_Unchecked" Checked="MapCheckBox_Checked" Grid.Row="9" Grid.ColumnSpan="2" />
         <Button Content="K-Means" Click="K_Means_Click" Grid.Column="1" HorizontalAlignment="Right" Margin="5" Grid.Row="8" Width="130" Background="Green"/>

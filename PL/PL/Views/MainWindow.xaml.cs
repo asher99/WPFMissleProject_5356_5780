@@ -25,9 +25,7 @@ namespace PL
 
         public MainWindow()
         {
-            InitializeComponent();
-            BLL_imp cur = new BLL_imp();
-            cur.moking();
+            InitializeComponent();            
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -69,8 +67,7 @@ namespace PL
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UserControl usc = null;
-            //GridMain.Children.Clear();
+            UserControl usc = null;            
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
