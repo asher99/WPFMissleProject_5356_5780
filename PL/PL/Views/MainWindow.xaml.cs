@@ -25,9 +25,7 @@ namespace PL
 
         public MainWindow()
         {
-            InitializeComponent();
-            asher ash = new asher();
-            ash.Show();           
+            InitializeComponent();           
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
