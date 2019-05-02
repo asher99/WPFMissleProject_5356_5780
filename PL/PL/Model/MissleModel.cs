@@ -145,5 +145,19 @@ namespace PL.Model
         {
             return currentBll.k_Means(check_list, k);
         }
+
+        public List<Report> allReports()
+        {
+            Task<List<Report>> reports = currentBll.getAllReports();
+            List<Report> result = new List<Report>();
+            foreach (var item in result)
+            {
+                if (item != null)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
     }
 }

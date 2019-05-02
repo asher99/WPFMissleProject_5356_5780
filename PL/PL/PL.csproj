@@ -212,6 +212,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\BrowseReportsViewModel.cs" />
     <Compile Include="Views\asher.xaml.cs">
       <DependentUpon>asher.xaml</DependentUpon>
     </Compile>
