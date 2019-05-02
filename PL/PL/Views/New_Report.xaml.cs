@@ -31,7 +31,8 @@ namespace PL.Views
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-
+            //submit_button.GetBindingExpression(Button.CommandParameterProperty).UpdateSource();
+            this.Close();
         }
 
         private void ReportLocation_TextChanged(object sender, RoutedEventArgs e)
