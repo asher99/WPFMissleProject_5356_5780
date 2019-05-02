@@ -15,6 +15,7 @@ namespace PL.ViewModel
     public class ReportViewModel : IReportViewModel, INotifyPropertyChanged
 
     {
+        public string SelectedLocation { get; set; }
         public MissleModel currentModel { set; get; }
         public TimeSpan thisTime=new TimeSpan();
         public ObservableCollection<string> locations
