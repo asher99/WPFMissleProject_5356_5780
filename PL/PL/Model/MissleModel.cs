@@ -107,8 +107,9 @@ namespace PL.Model
             {
                 return null;
             }
-            List<Report> result = getOllreports();
-            foreach (var item in result)
+            List<Report> reports = new List<Report>(allReports());
+            List<Report> result = new List<Report>();
+            foreach (var item in reports)
             {
                 if (item.timeOfReport>=startDate&&item.timeOfReport<=endDate)
                 {
@@ -118,13 +119,7 @@ namespace PL.Model
             return result;
         }
 
-        public List<Report> getOllreports()
-        {
-            Task<List<Report>> reports = currentBll.getAllReports();
-            List<Report> result = new List<Report>();
-            return result;
-        }
-
+        
         public Microsoft.Maps.MapControl.WPF.Location Center (List<Report> listOfReport)
         {
             double latitude_Min;
@@ -133,6 +128,7 @@ namespace PL.Model
             double longitude_Max;
             double latitude_Center;
             double longitude_Center;
+            Microsoft.Maps.MapControl.WPF.Location center_location = new Microsoft.Maps.MapControl.WPF.Location();
 
             if (listOfReport.Count == 0)
             {
@@ -144,7 +140,9 @@ namespace PL.Model
             longitude_Max = listOfReport.Max(r => r.Longitude);
             latitude_Center = (latitude_Min + latitude_Max) / 2;
             longitude_Center = (longitude_Min + longitude_Max) / 2;
-            return new Microsoft.Maps.MapControl.WPF.Location(latitude_Center, longitude_Center);
+            center_location.Latitude = latitude_Center;
+            center_location.Longitude = longitude_Center;
+            return center_location;
         }
 
         public List<GeoCoordinate> HitByK_Means(List<Report> check_list, int k)
