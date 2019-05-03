@@ -48,24 +48,12 @@ namespace PL.Views
                 new LineSeries
                 {
                     Title = "Series 1",
-                    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
+                    Values = getReportsPerMounth()
                 },
-                new LineSeries
-                {
-                    Title = "Series 2",
-                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
-                    PointGeometry = null
-                },
-                new LineSeries
-                {
-                    Title = "Series 3",
-                    Values = new ChartValues<double> { 4,2,7,2,7 },
-                    PointGeometry = DefaultGeometries.Square,
-                    PointGeometrySize = 15
-                }
+               
             };
 
-            Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
+            Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May","Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
             YFormatter = value => value.ToString("C");
 
             //modifying the series collection will animate and update the chart
@@ -87,6 +75,15 @@ namespace PL.Views
 
         public Func<ChartPoint, string> PointLabel { get; set; }
 
+        public ChartValues<double> getReportsPerMounth()
+        {
+            double[] mounth = new double[13];
+            foreach(Report r in browseViewModel.getAllReports)
+            {
+                mounth[r.timeOfReport.Month]++;
+            }
+            return new ChartValues<double> { mounth[1], mounth[2], mounth[3], mounth[4], mounth[5], mounth[6], mounth[7], mounth[8], mounth[9], mounth[10], mounth[11], mounth[12] };
+        }
        public void CreatePieChart()
         {
             double north = 0, south = 0, center = 0, other = 0;
