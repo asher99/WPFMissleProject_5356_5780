@@ -18,17 +18,8 @@
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
 
-        <lvc:PieChart Grid.Row="0" Grid.Column="0" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}" >
-            <lvc:PieChart.Series>
-                <lvc:PieSeries Title="North" Values="3" DataLabels="True"
-                               LabelPoint="{Binding PointLabel}"/>
-                <lvc:PieSeries Title="Center" Values="4" DataLabels="True" 
-                               LabelPoint="{Binding PointLabel}"/>
-                <lvc:PieSeries Title="South" Values="6" DataLabels="True" 
-                               LabelPoint="{Binding PointLabel}"/>
-                <lvc:PieSeries Title="Other" Values="4" DataLabels="True" 
-                               LabelPoint="{Binding PointLabel}"/>
-            </lvc:PieChart.Series>
+        <lvc:PieChart Name="pieChart1" Grid.Row="0" Grid.Column="0" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}" >
+            
         </lvc:PieChart>
 
         <lvc:CartesianChart Grid.Row="0" Grid.Column="1" Series="{Binding SeriesCollection}"  LegendLocation="Right"   >
