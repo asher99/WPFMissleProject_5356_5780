@@ -12,7 +12,7 @@ namespace PL.ViewModel
     {
         public MissleModel currentModel { set; get; }
 
-        public int North = 3;
+        public int North { set; get; }
 
         public List<Report> getAllReports
         {

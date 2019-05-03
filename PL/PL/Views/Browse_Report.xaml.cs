@@ -16,6 +16,7 @@ using LiveCharts.Wpf;
 using LiveCharts.Defaults;
 using BLL;
 using PL.ViewModel;
+using BE;
 namespace PL.Views
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace PL.Views
         {
             InitializeComponent();
 
-            PointLabel = chartPoint =>
-                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
-
+            CreatePieChart();
+   
             // DataContext = this;
             browseViewModel = new BrowseReportsViewModel();
-            this.DataContext = browseViewModel;
+            DataContext = browseViewModel;
+        
 
             SeriesCollection = new SeriesCollection
             {
@@ -117,6 +118,72 @@ namespace PL.Views
 
         public Func<ChartPoint, string> PointLabel { get; set; }
 
+       public void CreatePieChart()
+        {
+            double north = 0, south = 0, center = 0, other = 0;
+            Func<ChartPoint, string> labelPoint = chartPoint =>
+              string.Format("{0:n0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+
+            foreach(Report r in browseViewModel.getAllReports)
+            {
+                
+                if (r.Latitude > 32.144343 && r.Latitude <= 33.333795 && r.Longitude > 34.217333 && r.Longitude < 35.672361)
+                {
+                    north++;
+                }
+
+                // center starts at herzelia 
+                else if (r.Latitude > 31.571548 && r.Latitude <= 32.144343 && r.Longitude > 34.217333 && r.Longitude < 35.672361)
+                {
+                    center++;
+                }
+
+                // south starts at keriyt gat
+                else if (r.Latitude > 29.497512 && r.Latitude <= 31.571548 && r.Longitude > 34.217333 && r.Longitude < 35.672361)
+                {
+                    south++;
+                }
+                else
+                {
+                    other++;
+                }
+
+            }
+
+            pieChart1.Series = new SeriesCollection();
+            PieSeries pie = new PieSeries();
+            pie.Title = "North";
+            pie.Values = new ChartValues<double> { north };
+            pie.DataLabels = true;
+            pie.LabelPoint = labelPoint;
+            pieChart1.Series.Add(pie);
+
+            //Series - Each Slice of the pie. 
+            PieSeries pie1 = new PieSeries();
+            pie1.Title = "Center";
+            pie1.Values = new ChartValues<double> { center };
+            pie1.DataLabels = true;
+            pie1.LabelPoint = labelPoint;
+            pieChart1.Series.Add(pie1);
+
+            //Series - Each Slice of the pie. 
+            PieSeries pie2 = new PieSeries();
+            pie2.Title = "South";
+            pie2.Values = new ChartValues<double> { south };
+            pie2.DataLabels = true;
+            pie2.LabelPoint = labelPoint;
+            pieChart1.Series.Add(pie2);
+
+            PieSeries pie3 = new PieSeries();
+            pie2.Title = "Other";
+            pie2.Values = new ChartValues<double> { other };
+            pie2.DataLabels = true;
+            pie2.LabelPoint = labelPoint;
+            pieChart1.Series.Add(pie3);
+
+            pieChart1.LegendLocation = LegendLocation.Top;
+        }
+
         private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
         {
             var chart = (LiveCharts.Wpf.PieChart)chartpoint.ChartView;
@@ -126,8 +193,7 @@ namespace PL.Views
             {
                 series.PushOut = 0;
             }
-
-            
+           
             var selectedSeries = (PieSeries)chartpoint.SeriesView;
             selectedSeries.PushOut = 8;
         }
