@@ -30,6 +30,8 @@ namespace PL.Views
             dataAnalysisViewModel = new DataAnalysisViewModel();
             this.DataContext = dataAnalysisViewModel;
             InitializeComponent();
+            eventStartTime.IsEnabled = false;
+            eventNum.IsEnabled = false;
         }
 
         private void DisplayButton_Click(object sender, RoutedEventArgs e)

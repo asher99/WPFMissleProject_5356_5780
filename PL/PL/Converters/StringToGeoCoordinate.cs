@@ -4,7 +4,6 @@ using GoogleMapsApi.Entities.Geocoding.Request;
 using GoogleMapsApi.Entities.Geocoding.Response;
 using GoogleMapsApi.Entities.Directions.Request;
 using GoogleMapsApi.Entities.Directions.Response;
-using System.Web.Script.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

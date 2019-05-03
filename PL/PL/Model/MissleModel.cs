@@ -107,8 +107,7 @@ namespace PL.Model
             {
                 return null;
             }
-            Task<List<Report>> reports = currentBll.getAllReports();
-            List<Report> result = new List<Report>();
+            List<Report> result = getOllreports();
             foreach (var item in result)
             {
                 if (item.timeOfReport>=startDate&&item.timeOfReport<=endDate)
@@ -116,6 +115,13 @@ namespace PL.Model
                     result.Add(item);
                 }
             }
+            return result;
+        }
+
+        public List<Report> getOllreports()
+        {
+            Task<List<Report>> reports = currentBll.getAllReports();
+            List<Report> result = new List<Report>();
             return result;
         }
 
