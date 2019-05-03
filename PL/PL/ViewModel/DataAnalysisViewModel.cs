@@ -24,14 +24,15 @@ namespace PL.ViewModel
             {
                 if (end != null)
                 {
-                    return currentModel.getReportsByDates(start, end);
+                    allCurrentReport =  currentModel.getReportsByDates(start, end);
                 }
                 else
                 {
                     DateTime tempend = start;
                     tempend.AddMinutes (10 * Convert.ToInt32(eventNum));
-                    return currentModel.getReportsByDates(start, tempend);
+                    allCurrentReport =  currentModel.getReportsByDates(start, tempend);
                 }
+                return allCurrentReport;
             }
         }
 
@@ -42,14 +43,17 @@ namespace PL.ViewModel
 
         public DataAnalysisViewModel()
         {
+            allCurrentReport = new List<Report>();
             currentModel = new MissleModel();
+            CenterLocation = new Location();
         }
 
         public Location CenterLocation
         {
             set { }
             get {
-                return currentModel.Center(allCurrentReport);
+                CenterLocation = currentModel.Center(allCurrentReport);
+                return CenterLocation;
             }
         }
     }
