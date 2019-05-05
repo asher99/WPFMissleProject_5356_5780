@@ -27,9 +27,9 @@ namespace PL.Views
         DataAnalysisViewModel dataAnalysisViewModel { set; get; }
         public Data_Analysis()
         {
-            dataAnalysisViewModel = new DataAnalysisViewModel();
+            dataAnalysisViewModel = new DataAnalysisViewModel();            
             this.DataContext = dataAnalysisViewModel;
-            InitializeComponent();
+            InitializeComponent();            
             eventStartTime.IsEnabled = false;
             eventNum.IsEnabled = false;
         }
@@ -37,7 +37,10 @@ namespace PL.Views
         private void DisplayButton_Click(object sender, RoutedEventArgs e)
         {
             myMap.Children.Clear();
-            Location center = new Microsoft.Maps.MapControl.WPF.Location(dataAnalysisViewModel.CenterLocation);
+            //dataAnalysisViewModel.currentCenter();
+            dataAnalysisViewModel.ZoomLevel = 10.0;
+            dataAnalysisViewModel.allCurrentReport();
+            /*Location center = new Microsoft.Maps.MapControl.WPF.Location(dataAnalysisViewModel.CenterLocation);
             myMap.SetView(center, 10.0);
             Pushpin pin = new Pushpin();
             Location tempLocation = new Location();
@@ -48,7 +51,7 @@ namespace PL.Views
                 pin.Location = tempLocation;
                 pin.Background = new SolidColorBrush(ToMediaColor(System.Drawing.Color.FromName("Red")));
                 myMap.Children.Add(pin);
-            }
+            }*/
 
         }
 
@@ -89,7 +92,8 @@ namespace PL.Views
 
         private void K_Means_Click(object sender, RoutedEventArgs e)
         {
-            Pushpin pin = new Pushpin();
+            dataAnalysisViewModel.HitByK_Means();
+            /*Pushpin pin = new Pushpin();
             Location tempLocation = new Location();
             foreach (var item in dataAnalysisViewModel.HitByK_Means())
             {
@@ -98,7 +102,12 @@ namespace PL.Views
                 pin.Location = tempLocation;
                 pin.Background = new SolidColorBrush(ToMediaColor(System.Drawing.Color.FromName("Green")));
                 myMap.Children.Add(pin);
-            }
+            }*/
+        }
+
+        private void AddHits_Click(object sender, RoutedEventArgs e)
+        {
+            dataAnalysisViewModel.allCurrentHits();
         }
     }
 }
