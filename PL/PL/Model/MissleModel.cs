@@ -101,13 +101,13 @@ namespace PL.Model
             }
         }
 
-        public List<Report> getReportsByDates(DateTime startDate, DateTime endDate)
+        public async Task<List<Report>> getReportsByDates(DateTime startDate, DateTime endDate)
         {
             if (String.IsNullOrEmpty(startDate.ToString())|| String.IsNullOrEmpty(endDate.ToString())||startDate>endDate)
             {
                 return null;
             }
-            List<Report> reports = new List<Report>(allReports());
+            var reports =await allReports();
             List<Report> result = new List<Report>();
             foreach (var item in reports)
             {
@@ -119,7 +119,25 @@ namespace PL.Model
             return result;
         }
 
-        
+        public async Task<List<Hit>> getHitsByDates(DateTime startDate, DateTime endDate)
+        {
+            if (String.IsNullOrEmpty(startDate.ToString()) || String.IsNullOrEmpty(endDate.ToString()) || startDate > endDate)
+            {
+                return null;
+            }
+            var hits = await allHits();
+            List<Hit> result = new List<Hit>();
+            foreach (var item in hits)
+            {
+                if (item.timeOfHit >= startDate && item.timeOfHit <= endDate)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+
+
         public Microsoft.Maps.MapControl.WPF.Location Center (List<Report> listOfReport)
         {
             double latitude_Min;
@@ -150,18 +168,14 @@ namespace PL.Model
             return currentBll.k_Means(check_list, k);
         }
 
-        public List<Report> allReports()
+        public async Task<List<Hit>> allHits()
         {
-            Task<List<Report>> reports = currentBll.getAllReports();
-            List<Report> result = new List<Report>();
-            foreach (var item in result)
-            {
-                if (item != null)
-                {
-                    result.Add(item);
-                }
-            }
-            return result;
+            return await currentBll.getAllHits();
+        }
+
+        public async Task<List<Report>> allReports()
+        {            
+            return await currentBll.getAllReports();
         }
     }
 }

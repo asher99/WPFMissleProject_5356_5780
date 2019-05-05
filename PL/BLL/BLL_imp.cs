@@ -28,7 +28,7 @@ namespace BLL
         /// <returns></returns>
         public List<GeoCoordinate> k_Means(List<Report> report_List, int k)
         {
-            if (k>report_List.Count)
+            if (k > report_List.Count)
             {
                 k = report_List.Count;
             }
@@ -64,7 +64,7 @@ namespace BLL
                 is_Changed = false;
                 // For each report we will find its closest center point
                 for (int i = 0; i < report_List.Count; i++)
-                { 
+                {
                     double min = report_List[i].GetCoordinate().GetDistanceTo(ci_List[0]);
                     report_List[i].clusterId = 0;
 
@@ -88,7 +88,7 @@ namespace BLL
                 int counter = 0;
                 for (int i = 0; i < report_List.Count; i++)
                 {
-                    if (report_List[i].clusterId==id)
+                    if (report_List[i].clusterId == id)
                     {
                         c_LatitudeSum += report_List[i].Latitude;
                         c_LongitudeSum += report_List[i].Longitude;
@@ -152,5 +152,5 @@ namespace BLL
             return currentDal.getAllHits();
         }
     }
-    
+
 }

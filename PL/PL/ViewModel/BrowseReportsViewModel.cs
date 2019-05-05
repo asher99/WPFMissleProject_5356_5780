@@ -18,8 +18,8 @@ namespace PL.ViewModel
         {
             set { }
             get
-            {            
-                  return currentModel.allReports();                
+            {
+                return null;//currentModel.allReports();                
             }
         }
     }

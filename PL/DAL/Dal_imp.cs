@@ -23,9 +23,9 @@ namespace DAL
                 ctx.Reports.Add(_report);
                 await ctx.SaveChangesAsync();
             }
-        }       
+        }
 
-      
+
         public async void removeReport(Report _report)
         {
             if (getReport(_report.EventID) == null)
@@ -75,7 +75,7 @@ namespace DAL
             }
         }
 
-         
+
         public async void updateHit(Hit _hit)
         {
             if (getHit(_hit.EventID) == null)
@@ -88,27 +88,51 @@ namespace DAL
             }
         }
 
+        /*public async Task<List<Report>> GetReportsAsync(Predicate<Report> predicate = null)
+        {
+            List<Report> reports;
+            using (var db = new ProjectContext())
+            {
+                reports = await db.Reports.Include(report => report.Event).ToListAsync();
+                if (predicate != null)
+                    reports = reports.Where(r => predicate(r)).ToList();
+            }
+            return reports;
+        }*/
+
         public async Task<List<Report>> getAllReports()
         {
             List<Report> reports;
             using (var ctx = new DBContext())
             {
-                reports = await (from _report in ctx.Reports
-                                 select _report).ToListAsync();
+                reports = await (from _report in ctx.Reports select _report).ToListAsync();                
             }
             return reports;
         }
+
+        /*public Task<List<Report>> getAllReports()
+        {
+            Task<List<Report>> reports;
+            var ctx = new DBContext();
+            
+                reports = (from _report in ctx.Reports select _report).ToListAsync();
+
+            
+
+            return reports;
+        }*/
 
 
         public Report getReport(int id)
         {
             Report report;
-            using ( var ctx = new DBContext())
+            using (var ctx = new DBContext())
             {
                 report = ctx.Reports.SingleOrDefault(r => r.EventID == id);
             }
             return report;
         }
+
 
         public Hit getHit(int id)
         {
@@ -126,7 +150,7 @@ namespace DAL
             using (var ctx = new DBContext())
             {
                 hits = await (from _hit in ctx.Hits
-                                select _hit).ToListAsync();
+                              select _hit).ToListAsync();
             }
             return hits;
         }
