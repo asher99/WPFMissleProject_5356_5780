@@ -24,10 +24,11 @@ namespace PL.Views
     /// </summary>
     public partial class Browse_Report : Window
     {
-        
+
         public SeriesCollection SeriesCollection { get; set; }
-        public Func<double, string> XFormatter { get; set; }
+        public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
+
 
         public BrowseReportsViewModel browseViewModel { set; get; }
 
@@ -40,84 +41,49 @@ namespace PL.Views
             // DataContext = this;
             browseViewModel = new BrowseReportsViewModel();
             DataContext = browseViewModel;
-        
+
 
             SeriesCollection = new SeriesCollection
             {
-                new StackedAreaSeries
+                new LineSeries
                 {
-                    Title = "Africa",
-                    Values = new ChartValues<DateTimePoint>
-                    {
-                        new DateTimePoint(new DateTime(1950, 1, 1), .228),
-                        new DateTimePoint(new DateTime(1960, 1, 1), .285),
-                        new DateTimePoint(new DateTime(1970, 1, 1), .366),
-                        new DateTimePoint(new DateTime(1980, 1, 1), .478),
-                        new DateTimePoint(new DateTime(1990, 1, 1), .629),
-                        new DateTimePoint(new DateTime(2000, 1, 1), .808),
-                        new DateTimePoint(new DateTime(2010, 1, 1), 1.031),
-                        new DateTimePoint(new DateTime(2013, 1, 1), 1.110)
-                    },
-                    LineSmoothness = 0
+                    Title = "Series 1",
+                    Values = getReportsPerMounth()
                 },
-                new StackedAreaSeries
-                {
-                    Title = "N & S America",
-                    Values = new ChartValues<DateTimePoint>
-                    {
-                        new DateTimePoint(new DateTime(1950, 1, 1), .339),
-                        new DateTimePoint(new DateTime(1960, 1, 1), .424),
-                        new DateTimePoint(new DateTime(1970, 1, 1), .519),
-                        new DateTimePoint(new DateTime(1980, 1, 1), .618),
-                        new DateTimePoint(new DateTime(1990, 1, 1), .727),
-                        new DateTimePoint(new DateTime(2000, 1, 1), .841),
-                        new DateTimePoint(new DateTime(2010, 1, 1), .942),
-                        new DateTimePoint(new DateTime(2013, 1, 1), .972)
-                    },
-                    LineSmoothness = 0
-                },
-                new StackedAreaSeries
-                {
-                    Title = "Asia",
-                    Values = new ChartValues<DateTimePoint>
-                    {
-                        new DateTimePoint(new DateTime(1950, 1, 1), 1.395),
-                        new DateTimePoint(new DateTime(1960, 1, 1), 1.694),
-                        new DateTimePoint(new DateTime(1970, 1, 1), 2.128),
-                        new DateTimePoint(new DateTime(1980, 1, 1), 2.634),
-                        new DateTimePoint(new DateTime(1990, 1, 1), 3.213),
-                        new DateTimePoint(new DateTime(2000, 1, 1), 3.717),
-                        new DateTimePoint(new DateTime(2010, 1, 1), 4.165),
-                        new DateTimePoint(new DateTime(2013, 1, 1), 4.298)
-                    },
-                    LineSmoothness = 0
-                },
-                new StackedAreaSeries
-                {
-                    Title = "Europe",
-                    Values = new ChartValues<DateTimePoint>
-                    {
-                        new DateTimePoint(new DateTime(1950, 1, 1), .549),
-                        new DateTimePoint(new DateTime(1960, 1, 1), .605),
-                        new DateTimePoint(new DateTime(1970, 1, 1), .657),
-                        new DateTimePoint(new DateTime(1980, 1, 1), .694),
-                        new DateTimePoint(new DateTime(1990, 1, 1), .723),
-                        new DateTimePoint(new DateTime(2000, 1, 1), .729),
-                        new DateTimePoint(new DateTime(2010, 1, 1), .740),
-                        new DateTimePoint(new DateTime(2013, 1, 1), .742)
-                    },
-                    LineSmoothness = 0
-                }
+               
             };
 
-            XFormatter = val => new DateTime((long)val).ToString("yyyy");
-            YFormatter = val => val.ToString("N") + " M";
+            Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May","Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+            YFormatter = value => value.ToString("C");
+
+            //modifying the series collection will animate and update the chart
+            SeriesCollection.Add(new LineSeries
+            {
+                Title = "Series 4",
+                Values = new ChartValues<double> { 5, 3, 2, 4 },
+                LineSmoothness = 0, //0: straight lines, 1: really smooth lines
+                PointGeometry = Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
+                PointGeometrySize = 50,
+                PointForeground = Brushes.Gray
+            });
+
+            //modifying any series values will also animate and update the chart
+            SeriesCollection[3].Values.Add(5d);
 
             DataContext = this;
         }
 
         public Func<ChartPoint, string> PointLabel { get; set; }
 
+        public ChartValues<double> getReportsPerMounth()
+        {
+            double[] mounth = new double[13];
+            foreach(Report r in browseViewModel.getAllReports)
+            {
+                mounth[r.timeOfReport.Month]++;
+            }
+            return new ChartValues<double> { mounth[1], mounth[2], mounth[3], mounth[4], mounth[5], mounth[6], mounth[7], mounth[8], mounth[9], mounth[10], mounth[11], mounth[12] };
+        }
        public void CreatePieChart()
         {
             double north = 0, south = 0, center = 0, other = 0;
