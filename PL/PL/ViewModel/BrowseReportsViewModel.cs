@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
@@ -9,7 +11,7 @@ using PL.Model;
 
 namespace PL.ViewModel
 {
-    public class BrowseReportsViewModel
+    public class BrowseReportsViewModel : INotifyPropertyChanged
     {
         public MissleModel currentModel { set; get; }
         public ObservableCollection<Report> North { get; set; }
@@ -25,6 +27,28 @@ namespace PL.ViewModel
             South = new ObservableCollection<Report>();
             Center = new ObservableCollection<Report>();
             Other = new ObservableCollection<Report>();
+            North.CollectionChanged += (sender, args) =>
+            {
+                OnPropertyChanged("name of binding");
+            };
+            South.CollectionChanged += (sender, args) =>
+            {
+                OnPropertyChanged("name of binding");
+            };
+            Center.CollectionChanged += (sender, args) =>
+            {
+                OnPropertyChanged("name of binding");
+            };
+            Other.CollectionChanged += (sender, args) =>
+            {
+                OnPropertyChanged("name of binding");
+            };
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public async void getAllReports()
