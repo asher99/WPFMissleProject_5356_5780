@@ -16,7 +16,7 @@ namespace BE
         public DateTime timeOfHit { set; get; }
         public double Latitude { get; set; }// Location
         public double Longitude { get; set; }
-        //public Image locationImage { set; get; }
+        public string locationImage { set; get; }
 
 
         public GeoCoordinate GetCoordinate()

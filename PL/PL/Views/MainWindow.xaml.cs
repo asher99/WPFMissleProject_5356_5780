@@ -25,7 +25,8 @@ namespace PL
 
         public MainWindow()
         {
-            InitializeComponent();           
+            InitializeComponent();
+                     
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)

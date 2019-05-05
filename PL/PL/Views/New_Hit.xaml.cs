@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.IO;
 namespace PL.Views
 {
     /// <summary>
@@ -21,6 +21,11 @@ namespace PL.Views
     /// </summary>
     public partial class New_Hit : Window
     {
+
+        public string path = "C:/Users/אשר אלכסנדר/Source/Repos/asher99/WPFMissleProject_5356_5780/PL/PL/Images/";
+        public BitmapImage bmi;
+        public string destFile;
+
         public HitViewModel hitViewModel { set; get; }
         //public AutoCompleteBox
 
@@ -39,6 +44,69 @@ namespace PL.Views
         private void HitLocation_TextChanged(object sender, RoutedEventArgs e)
         {
             hitViewModel.TextChange(location.Text);
+        }
+
+        private void lstImage_Drop(object sender, DragEventArgs e)
+        {
+            //Only supports file drag and drop
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                return;
+            }
+
+            //Drag the file access
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            //Note that, because the program supports both pulled also supports drag the past, then ListBox can receive its drag and drop files
+            //In order to prevent conflict mouse clicking and dragging, need to be shielded from the program itself to drag the file
+            //Here to determine whether a document from outside the program drag in, is to determine the image is in the working directory
+            if (files.Length > 0 && !files[0].StartsWith(path) &&
+                (e.AllowedEffects & DragDropEffects.Copy) == DragDropEffects.Copy)
+            {
+                e.Effects = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effects = DragDropEffects.None;
+            }
+
+            foreach (string file in files)
+            {
+                try
+                {
+                    //If the image is from the external drag in, make a backup copy of the file to the working directory
+                    destFile = path + System.IO.Path.GetFileName(file);
+
+                    switch (e.Effects)
+                    {
+                        case DragDropEffects.Copy:
+                            File.Copy(file, destFile, false);
+                            bmi = new BitmapImage(new Uri(destFile));
+                            imgShow.Source = bmi;
+                            lstImage.Items.Add(destFile);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Already exists in this file or import the non image files！");
+                }
+
+            }
+        }
+
+        private void lstImage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstImage.SelectedIndex > -1)
+            {
+                //Use only the Listbox radio function
+                string[] files = new string[1];
+                files[0] = lstImage.SelectedItem.ToString();
+
+                DragDrop.DoDragDrop(lstImage, new DataObject(DataFormats.FileDrop, files), DragDropEffects.Copy | DragDropEffects.Move /* | DragDropEffects.Link */);
+            }
         }
     }
 }
