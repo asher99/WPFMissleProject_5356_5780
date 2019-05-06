@@ -28,42 +28,59 @@ namespace PL.Views
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
+        
 
-
-        public BrowseReportsViewModel browseViewModel { set; get; }
+       // public BrowseReportsViewModel browseViewModel { set; get; }
 
         public Browse_Report()
         {
             InitializeComponent();
 
-            CreatePieChart();
-   
-            // DataContext = this;
-            browseViewModel = new BrowseReportsViewModel();
-            DataContext = browseViewModel;
+            // CreatePieChart();
 
 
+           //  browseViewModel = new BrowseReportsViewModel();
+            // DataContext = browseViewModel;
+           // browseViewModel.getAllReports();
+
+            PointLabel = chartPoint =>
+                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+
+            DataContext = this;
+            
             SeriesCollection = new SeriesCollection
             {
                 new LineSeries
                 {
-                    Title = "Series 1",
-                    Values = getReportsPerMounth()
+                    Title = "North",
+                    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
                 },
-               
+                new LineSeries
+                {
+                    Title = "Center",
+                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
+                    PointGeometry = null
+                },
+                new LineSeries
+                {
+                    Title = "South",
+                    Values = new ChartValues<double> { 4,2,7,2,7 },
+                    PointGeometry = DefaultGeometries.Square,
+                    PointGeometrySize = 15
+                }
             };
 
-            Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May","Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-            YFormatter = value => value.ToString("C");
+            Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
+            YFormatter = value => value.ToString("N");
 
             //modifying the series collection will animate and update the chart
             SeriesCollection.Add(new LineSeries
             {
-                Title = "Series 4",
+                Title = "Other",
                 Values = new ChartValues<double> { 5, 3, 2, 4 },
                 LineSmoothness = 0, //0: straight lines, 1: really smooth lines
-                PointGeometry = Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
-                PointGeometrySize = 50,
+               // PointGeometry = Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
+                PointGeometrySize = 5,
                 PointForeground = Brushes.Gray
             });
 
@@ -71,24 +88,15 @@ namespace PL.Views
             SeriesCollection[3].Values.Add(5d);
 
             DataContext = this;
-        }
+        
+    }
 
         public Func<ChartPoint, string> PointLabel { get; set; }
 
-        public ChartValues<double> getReportsPerMounth()
-        {
-            double[] mounth = new double[13];
-            foreach(Report r in browseViewModel.getAllReports)
-            {
-                mounth[r.timeOfReport.Month]++;
-            }
-            return new ChartValues<double> { mounth[1], mounth[2], mounth[3], mounth[4], mounth[5], mounth[6], mounth[7], mounth[8], mounth[9], mounth[10], mounth[11], mounth[12] };
-        }
-       public void CreatePieChart()
+      /* public void CreatePieChart()
         {
             double north = 0, south = 0, center = 0, other = 0;
-            Func<ChartPoint, string> labelPoint = chartPoint =>
-              string.Format("{0:n0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+            
 
             foreach(Report r in browseViewModel.getAllReports)
             {
@@ -116,39 +124,8 @@ namespace PL.Views
 
             }
 
-            pieChart1.Series = new SeriesCollection();
-            PieSeries pie = new PieSeries();
-            pie.Title = "North";
-            pie.Values = new ChartValues<double> { north };
-            pie.DataLabels = true;
-            pie.LabelPoint = labelPoint;
-            pieChart1.Series.Add(pie);
-
-            //Series - Each Slice of the pie. 
-            PieSeries pie1 = new PieSeries();
-            pie1.Title = "Center";
-            pie1.Values = new ChartValues<double> { center };
-            pie1.DataLabels = true;
-            pie1.LabelPoint = labelPoint;
-            pieChart1.Series.Add(pie1);
-
-            //Series - Each Slice of the pie. 
-            PieSeries pie2 = new PieSeries();
-            pie2.Title = "South";
-            pie2.Values = new ChartValues<double> { south };
-            pie2.DataLabels = true;
-            pie2.LabelPoint = labelPoint;
-            pieChart1.Series.Add(pie2);
-
-            PieSeries pie3 = new PieSeries();
-            pie2.Title = "Other";
-            pie2.Values = new ChartValues<double> { other };
-            pie2.DataLabels = true;
-            pie2.LabelPoint = labelPoint;
-            pieChart1.Series.Add(pie3);
-
-            pieChart1.LegendLocation = LegendLocation.Top;
-        }
+            
+        }*/
 
         private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
         {

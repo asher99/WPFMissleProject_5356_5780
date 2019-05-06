@@ -19,29 +19,28 @@ namespace PL.ViewModel
         public ObservableCollection<Report> Center { get; set; }
         public ObservableCollection<Report> Other { get; set; }
 
-        //public int North { set; get; }
-
         public BrowseReportsViewModel()
         {
+            currentModel = new MissleModel();
             North = new ObservableCollection<Report>();
             South = new ObservableCollection<Report>();
             Center = new ObservableCollection<Report>();
             Other = new ObservableCollection<Report>();
             North.CollectionChanged += (sender, args) =>
             {
-                OnPropertyChanged("name of binding");
+                OnPropertyChanged("North");
             };
             South.CollectionChanged += (sender, args) =>
             {
-                OnPropertyChanged("name of binding");
+                OnPropertyChanged("Center");
             };
             Center.CollectionChanged += (sender, args) =>
             {
-                OnPropertyChanged("name of binding");
+                OnPropertyChanged("South");
             };
             Other.CollectionChanged += (sender, args) =>
             {
-                OnPropertyChanged("name of binding");
+                OnPropertyChanged("Other");
             };
         }
 
@@ -54,23 +53,23 @@ namespace PL.ViewModel
         public async void getAllReports()
         {
             var allreport = await currentModel.allReports();
-            foreach (var item in allreport)
+            foreach (var r in allreport)
             {
-                if (true)
+                if (r.Latitude > 32.144343 && r.Latitude <= 33.333795 && r.Longitude > 34.217333 && r.Longitude < 35.672361)
                 {
-                    North.Add(item);
+                    North.Add(r);
                 }
-                if (true)
+                else if (r.Latitude > 31.571548 && r.Latitude <= 32.144343 && r.Longitude > 34.217333 && r.Longitude < 35.672361)
                 {
-                    South.Add(item);
+                    Center.Add(r);
                 }
-                if (true)
+                else if (r.Latitude > 29.497512 && r.Latitude <= 31.571548 && r.Longitude > 34.217333 && r.Longitude < 35.672361)
                 {
-                    Center.Add(item);
+                     South.Add(r);
                 }
                 else
                 {
-                    Other.Add(item);
+                    Other.Add(r);
                 }
             }
 

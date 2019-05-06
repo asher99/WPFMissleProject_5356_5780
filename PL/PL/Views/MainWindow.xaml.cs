@@ -89,5 +89,11 @@ namespace PL
         {
             Close();
         }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+           WindowState = WindowState.Minimized;
+        }
+        
     }
 }

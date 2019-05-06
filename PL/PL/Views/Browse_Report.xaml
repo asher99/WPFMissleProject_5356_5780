@@ -9,7 +9,7 @@
         Title="Browse_Report" WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
@@ -18,13 +18,22 @@
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
 
-        <lvc:PieChart Name="pieChart1" Grid.Row="0" Grid.Column="0" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}" >
-            
+        <lvc:PieChart Name="pieChart1" Grid.Row="1" Grid.Column="0" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}" >
+            <lvc:PieChart.Series>
+                <lvc:PieSeries Title="North" Values="4" DataLabels="True"
+                               LabelPoint="{Binding PointLabel}"/>
+            <lvc:PieSeries Title="Center" Values="6" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+            <lvc:PieSeries Title="South" Values="23" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+            <lvc:PieSeries Title="Other" Values="12" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+            </lvc:PieChart.Series>
         </lvc:PieChart>
 
-        <lvc:CartesianChart Grid.Row="0" Grid.Column="1" Series="{Binding SeriesCollection}" LegendLocation="Right" >
+         <lvc:CartesianChart Grid.Row="1" Grid.Column="1" Series="{Binding SeriesCollection}" LegendLocation="Right" >
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Sales" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                <lvc:Axis Title="Reports" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="Month" Labels="{Binding Labels}"></lvc:Axis>
